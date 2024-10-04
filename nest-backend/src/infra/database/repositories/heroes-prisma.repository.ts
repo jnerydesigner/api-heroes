@@ -5,6 +5,19 @@ import { Heroes } from "@prisma/client";
 
 export class HeroesPrismaRepository implements HeroesRepository {
     constructor(private readonly prismaService: PrismaService) { }
+    async findHeroById(id: string): Promise<Heroes> {
+        const hero = await this.prismaService.heroes.findUnique({
+            where: {
+                id
+            }
+        })
+
+        if (!hero) {
+            throw new Error('Hero not found');
+        }
+
+        return hero;
+    }
     async createhero(hero: Heroes): Promise<Heroes> {
         const heroExists = await this.findHeroByIdBoolean(hero.id);
         if (heroExists) {

@@ -6,4 +6,5 @@ export interface HeroesRepository {
     count(): Promise<number>;
     createhero(hero: Heroes): Promise<Heroes>;
     findHeroByIdBoolean(id: string): Promise<boolean>;
+    findHeroById(id: string): Promise<Heroes>;
 }
