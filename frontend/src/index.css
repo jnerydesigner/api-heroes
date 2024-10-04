@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Comic Strip';
+        src: url('../fonts/ComicStrip-Regular.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Bada Boom';
+        src: url('../fonts/BadaBoomBBComic.ttf') format('truetype');
+    }
+
+    .circle{
+        background-image: radial-gradient(circle, #FDAC1A 10%, transparent 10%);
+        background-size: 10px 10px;
+    }
+
+    .circle-white{
+        background-image: radial-gradient(circle, #f7eedf 10%, transparent 10%);
+        background-size: 10px 10px;
+    }
+}

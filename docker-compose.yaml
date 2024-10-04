@@ -1,0 +1,38 @@
+services:
+  # heroes_api_service:
+  #   container_name: heroes_api_service
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 4400:4400
+  #   environment:
+  #     PORT_SERVER: 4400
+  #     DATABASE_URL: postgresql://heroes:heroes@heroes_postgres:5432/heroes
+  #   networks:
+  #     - heroes_network
+  #   depends_on:
+  #     - heroes_postgres
+  #   restart: always
+
+  heroes_postgres:
+    container_name: heroes_postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: heroes
+      POSTGRES_PASSWORD: heroes
+      POSTGRES_DB: heroes
+    ports:
+      - 5552:5432
+    volumes:
+      - heroes_vol:/var/lib/postgresql/data
+    networks:
+      - heroes_network
+    restart: always
+
+volumes:
+  heroes_vol:
+
+networks:
+  heroes_network:
+    driver: bridge

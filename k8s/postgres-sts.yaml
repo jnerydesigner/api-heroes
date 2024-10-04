@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: heroes-postgres
+  labels:
+    app: heroes-postgres
+spec:
+  serviceName: heroes-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heroes-postgres
+  template:
+    metadata:
+      labels:
+        app: heroes-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13
+        ports:
+        - containerPort: 5432
+          name: postgres
+        resources:
+          requests:
+            cpu: "250m"      # Aumentar a quantidade mínima de CPU
+            memory: "512Mi"  # Aumentar a quantidade mínima de memória
+          limits:
+            cpu: "1000m"      # Aumentar o limite máximo de CPU
+            memory: "1Gi"  # Aumentar o limite máximo de memória
+        env:
+        - name: POSTGRES_USER
+          value: heroes
+        - name: POSTGRES_PASSWORD
+          value: heroes
+        - name: POSTGRES_DB
+          value: heroes
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgres-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: "standard"
