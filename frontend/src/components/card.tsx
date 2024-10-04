@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { HeroesProps } from "../api/fetch-heroes";
 import { truncateLimitedWord } from "../utils/truncateLimitedWords";
 
@@ -15,9 +16,12 @@ export const Card: React.FC<CardProps> = ({ hero }) => {
       <h2 className="text-4xl my-2">{hero.name}</h2>
       <p>
         {truncateLimitedWord(hero.about, 100)}
-        <a href="http://localhost:3003/hero/1" className="text-red-comics">
+        <NavLink to={`/hero/${hero.id}`} className="text-red-comics">
           ... see more
-        </a>
+        </NavLink>
+        {/* <a href="http://localhost:3003/hero/1" className="text-red-comics">
+          ... see more
+        </a> */}
       </p>
 
       {hero.heroOrVilain === "hero" ? (

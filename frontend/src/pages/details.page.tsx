@@ -1,7 +1,7 @@
 import { Content } from "@/components/content";
 import { Header } from "@/components/header";
 
-export function HomePage() {
+export function DetailsPage() {
   return (
     <>
       <div className="container mx-auto">
