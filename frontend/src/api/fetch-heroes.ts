@@ -21,3 +21,9 @@ export const fetchHeroes = async (page: number = 1) => {
   );
   return data;
 };
+
+export const fetchHeroById = async (id: string) => {
+  const { data } = await Api.get<HeroesProps>(`/heroes/details/${id}`);
+  return data;
+}
+

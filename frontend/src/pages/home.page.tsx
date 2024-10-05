@@ -6,6 +6,7 @@ export function HomePage() {
     <>
       <div className="container mx-auto">
         <Header />
+
         <Content />
       </div>
     </>
