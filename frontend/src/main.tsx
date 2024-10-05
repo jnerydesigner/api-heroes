@@ -7,17 +7,29 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PageProvider } from "./context/page.context.tsx";
 import { HomePage } from "./pages/home.page.tsx";
 import { DetailsPage } from "./pages/details.page.tsx";
+import { CreatePage } from "./pages/create.page.tsx";
+import { RootLayout } from "./pages/layout.tsx";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/hero/:id",
-    element: <DetailsPage />,
+    element: <RootLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/hero/:id",
+        element: <DetailsPage />,
+      },
+      {
+        path: "/create-hero",
+        element: <CreatePage />,
+      },
+    ],
   },
 ]);
 
