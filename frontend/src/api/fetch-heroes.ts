@@ -1,3 +1,4 @@
+import { HeroFormData } from "@/components/create-hero-form";
 import { Api } from ".";
 
 export interface HeroesProps {
@@ -26,4 +27,10 @@ export const fetchHeroById = async (id: string) => {
   const { data } = await Api.get<HeroesProps>(`/heroes/details/${id}`);
   return data;
 }
+
+export const submitHero = async (data: HeroFormData) => {
+  const response = await Api.post('/heroes', data);
+  return response.data;
+};
+
 

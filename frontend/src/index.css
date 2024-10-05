@@ -34,5 +34,8 @@
         -webkit-text-stroke: 1px red;
         letter-spacing: .3rem;
     }
+    body{
+        background: url('https://raw.githubusercontent.com/jnerydesigner/api-heroes/refs/heads/main/frontend/public/bg-persons-compressed.png') repeat;
+    }
 
 }

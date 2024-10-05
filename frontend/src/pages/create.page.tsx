@@ -1,3 +1,9 @@
+import { CreateHeroForm } from "@/components/create-hero-form";
+
 export function CreatePage() {
-  return <h1>Create Page</h1>;
+  return (
+    <div className="w-full h-[80vh] flex justify-center items-center circle bg-red-comics border-[8px] border-slate-950">
+      <CreateHeroForm />
+    </div>
+  );
 }
