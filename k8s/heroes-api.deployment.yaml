@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: heroes-api
-        image: api-marvel
+        image: jandernery/nestjs-api-heroes:1.0
         imagePullPolicy: IfNotPresent
         # image: jandernery/api-marvel:1.4
         resources:

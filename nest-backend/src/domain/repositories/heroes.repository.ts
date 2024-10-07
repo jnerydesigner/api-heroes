@@ -7,4 +7,8 @@ export interface HeroesRepository {
     createhero(hero: Heroes): Promise<Heroes>;
     findHeroByIdBoolean(id: string): Promise<boolean>;
     findHeroById(id: string): Promise<Heroes>;
+    findAllJson(): Promise<HeroesPropsOutput[]>;
+    delete(): Promise<void>;
+    deleteAll(): Promise<void>;
+    updateHero(id: string, hero: Heroes): Promise<Heroes>;
 }

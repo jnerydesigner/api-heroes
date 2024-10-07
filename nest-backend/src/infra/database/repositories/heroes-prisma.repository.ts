@@ -5,6 +5,22 @@ import { Heroes } from "@prisma/client";
 
 export class HeroesPrismaRepository implements HeroesRepository {
     constructor(private readonly prismaService: PrismaService) { }
+
+
+    async delete(): Promise<void> {
+        await this.prismaService.heroes.deleteMany();
+    }
+    async findAllJson(): Promise<HeroesPropsOutput[]> {
+        const heroes = await this.prismaService.heroes.findMany();
+
+        return heroes.map(hero => ({
+            id: hero.id,
+            name: hero.name,
+            about: hero.about,
+            image: hero.image,
+            heroOrVilain: hero.hero_or_vilain,
+        }));
+    }
     async findHeroById(id: string): Promise<Heroes> {
         const hero = await this.prismaService.heroes.findUnique({
             where: {
@@ -66,5 +82,20 @@ export class HeroesPrismaRepository implements HeroesRepository {
         }
 
         return true
+    }
+
+    async updateHero(id: string, heroInput: Heroes): Promise<Heroes> {
+        const hero = await this.prismaService.heroes.update({
+            where: {
+                id
+            },
+            data: heroInput
+        })
+
+        return hero
+    }
+
+    async deleteAll(): Promise<void> {
+        await this.prismaService.heroes.deleteMany();
     }
 }
