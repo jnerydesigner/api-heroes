@@ -9,6 +9,7 @@ import { HomePage } from "./pages/home.page.tsx";
 import { DetailsPage } from "./pages/details.page.tsx";
 import { CreatePage } from "./pages/create.page.tsx";
 import { RootLayout } from "./pages/layout.tsx";
+import { LoginPage } from "./pages/login.page.tsx";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/create-hero",
         element: <CreatePage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
     ],
   },

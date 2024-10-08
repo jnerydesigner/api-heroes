@@ -21,7 +21,7 @@ export function HomePage() {
           </h1>
         </div>
       )}
-      <div className="w-full circle bg-red-comics border-[8px] border-slate-950 grid grid-cols-5 gap-4 p-4">
+      <div className="w-full h-auto circle bg-red-comics border-[8px] border-slate-950 grid grid-cols-1 gap-4 p-4">
         <Pagination
           currentPage={data?.currentPage ?? 1}
           totalPages={data?.totalPages ?? 10}
@@ -33,7 +33,7 @@ export function HomePage() {
         ))}
       </div>
 
-      <div className="w-full circle bg-red-comics border-[8px] border-slate-950 grid grid-cols-5 gap-4 p-4">
+      <div className="w-full h-auto circle bg-red-comics border-[8px] border-slate-950 grid grid-cols-1 gap-4 p-4q">
         <Pagination
           currentPage={data?.currentPage ?? 1}
           totalPages={data?.totalPages ?? 10}

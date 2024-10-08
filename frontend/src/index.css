@@ -38,4 +38,25 @@
         background: url('https://raw.githubusercontent.com/jnerydesigner/api-heroes/refs/heads/main/frontend/public/bg-persons-compressed.png') repeat;
     }
 
+    .bg-hero{
+        background: url('https://raw.githubusercontent.com/jnerydesigner/api-heroes/refs/heads/main/frontend/public/bg-hero.png') no-repeat;
+        background-size: cover;
+    }
+
+    .custom-toast-container .Toastify__toast {
+        background-image: radial-gradient(circle, #FDAC1A 10%, transparent 10%);
+        background-size: 10px 10px;
+        font-family: 'Bada Boom';
+      }
+      
+      .custom-toast-container .Toastify__toast--success {
+        background-color: #FEE01C ;
+        border: 1px solid #FDAC1A;
+      }
+      
+      .custom-toast-container .Toastify__toast--error {
+        background-color: #fd8181;
+        color: white;
+      }
+
 }
