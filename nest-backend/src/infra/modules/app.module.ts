@@ -6,6 +6,8 @@ import { AppController } from '@presenters/app.controller';
 import { HeroesModule } from './heroes.module';
 
 import { DatabaseModule } from './database.module';
+import { AuthModule } from './auth.module';
+import { UsersModule } from './users.module';
 
 @Module({
   imports: [
@@ -14,7 +16,9 @@ import { DatabaseModule } from './database.module';
       isGlobal: true,
     }),
     HeroesModule,
-    DatabaseModule
+    DatabaseModule,
+    AuthModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],

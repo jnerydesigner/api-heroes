@@ -25,7 +25,6 @@ const prismaService = prisma;
 app.get("/", async (request: Request, res: Response) => {
   const { currentPage, pageSize } = request.query;
   if (!currentPage || !pageSize) {
-    console.log("currentPage or pageSize is not defined");
     const current = 1;
     const size = 10
     const totalItems = await prismaService.heroes.count();

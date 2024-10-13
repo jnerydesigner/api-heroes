@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ToastContainer, toast } from "react-toastify";
@@ -31,6 +31,8 @@ export const CreateHeroForm: React.FC = () => {
   const mutation = useMutation({
     mutationFn: (data: HeroFormData) => submitHero(data),
     onSuccess: () => {
+      navigate("/");
+      reset();
       toast.success("Hero saved successfully!", { position: "top-right" });
     },
     onError: (error) => {
@@ -42,8 +44,6 @@ export const CreateHeroForm: React.FC = () => {
 
   const onSubmit = (data: HeroFormData) => {
     mutation.mutate(data);
-    navigate("/");
-    reset();
   };
 
   return (

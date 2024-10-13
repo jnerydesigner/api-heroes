@@ -7,12 +7,14 @@ import { HeroesDeleteAllUseCase } from '@application/use-case/heroes-delete-all.
 import { HeroesFindAllUseCase } from '@application/use-case/heroes-find-all.usecase';
 import { HeroesGenerateJsonUseCase } from '@application/use-case/heroes-generate-json.usecase';
 import { HeroesUpdateUseCase } from '@application/use-case/heroes-update.usecase';
+import { Public } from '@infra/decorators/is_public';
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 
 @Controller('heroes')
 export class HeroesController {
     constructor(private readonly findOneUseCase: HeroesFindAllUseCase, private readonly heroesCreateUsecase: HeroesCreateUsecase, private readonly heroFindOneUseCase: HeroFindOneUsecase, private readonly createJsonHeroes: HeroesCreateJsonUseCase, private readonly generateJsonHeroes: HeroesGenerateJsonUseCase, private readonly deleteAllUseCase: HeroesDeleteAllUseCase, private readonly updateHeroUseCase: HeroesUpdateUseCase) { }
 
+    @Public()
     @Get()
     async findAll(@Query() query: PaginationDto) {
         return this.findOneUseCase.execute(query);

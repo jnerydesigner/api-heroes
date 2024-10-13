@@ -28,8 +28,18 @@ export const fetchHeroById = async (id: string) => {
   return data;
 }
 
+// export const submitHero = async (data: HeroFormData) => {
+//   const response = await Api.post('/heroes', data, {
+//     headers: {
+//       Authorization: `Bearer ${localStorage.getItem("tokenHeroesApi")}`,
+//     }
+//   });
+//   return response.data;
+// };
+
 export const submitHero = async (data: HeroFormData) => {
   const response = await Api.post('/heroes', data);
+
   return response.data;
 };
 

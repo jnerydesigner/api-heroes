@@ -10,6 +10,7 @@ import { DetailsPage } from "./pages/details.page.tsx";
 import { CreatePage } from "./pages/create.page.tsx";
 import { RootLayout } from "./pages/layout.tsx";
 import { LoginPage } from "./pages/login.page.tsx";
+import { TokenProvider } from "./context/token.context.tsx";
 
 const queryClient = new QueryClient();
 
@@ -40,12 +41,14 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PageProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        {/* <App /> */}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </PageProvider>
+    <TokenProvider>
+      <PageProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          {/* <App /> */}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </PageProvider>
+    </TokenProvider>
   </StrictMode>
 );

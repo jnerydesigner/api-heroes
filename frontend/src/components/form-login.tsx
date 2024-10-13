@@ -6,6 +6,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { z } from "zod";
 import { ButtonForm } from "./button";
 import { InputForm } from "./input-form";
+import { useNavigate } from "react-router-dom";
+import { useToken } from "@/context/token.context";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -25,30 +27,36 @@ const formSchema = z.object({
 export type HeroLoginData = z.infer<typeof formSchema>;
 
 export const FormLogin: React.FC = () => {
+  const navigate = useNavigate();
+  const { setTokenCtx } = useToken();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<HeroLoginData>({
     resolver: zodResolver(formSchema),
   });
 
-  //   const mutation = useMutation({
-  //     mutationFn: (data: HeroLoginData) => submitLogin(data),
-  //     onSuccess: () => {
-  //       toast.success("Hero saved successfully!", { position: "top-right" });
-  //     },
-  //     onError: (error) => {
-  //       toast.error(`Error saving hero: ${error.message}`, {
-  //         position: "top-right",
-  //       });
-  //     },
-  //   });
+  const mutation = useMutation({
+    mutationFn: (data: HeroLoginData) => submitLogin(data),
+    onSuccess: (data: { access_token: string }) => {
+      const token = data.access_token;
+      if (token) {
+        setTokenCtx(token);
+        localStorage.setItem("tokenHeroesApi", token);
+        toast.success("Login Successful", { position: "top-center" });
+        navigate("/");
+      }
+    },
+    onError: (error) => {
+      toast.error(`Error saving hero: ${error.message}`, {
+        position: "top-right",
+      });
+    },
+  });
 
-  const onSubmit = (data: HeroLoginData) => {
-    toast.success("Login successfully!", { position: "top-right" });
-    console.log(data);
+  const onSubmit = async (data: HeroLoginData) => {
+    mutation.mutate(data);
   };
   return (
     <>

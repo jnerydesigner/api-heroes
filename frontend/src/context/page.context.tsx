@@ -15,8 +15,6 @@ export const PageProvider = ({ children }: { children: ReactNode }) => {
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setPageCurrent(page);
-      // eslint-disable-next-line no-console
-      console.log("context", page);
     }
   };
 
