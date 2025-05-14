@@ -18,7 +18,7 @@ export class HeroesGenerateJsonUseCase {
       const heroes = JSON.parse(data);
       for (const hero of heroes) {
         const heroPersistence = HeroMapper.toPersistence(hero);
-        await this.heroesRepository.createhero(heroPersistence);
+        await this.heroesRepository.createHero(heroPersistence);
       }
     } catch (err) {
       console.error('Erro ao escrever o arquivo:', err);

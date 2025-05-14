@@ -34,6 +34,7 @@ export class HeroesController {
   @Public()
   @Get()
   async findAll(@Query() query: PaginationDto) {
+    console.log(query);
     return this.findOneUseCase.execute(query);
   }
 
