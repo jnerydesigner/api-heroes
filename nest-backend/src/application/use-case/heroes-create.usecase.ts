@@ -6,17 +6,17 @@ import { randomUUID } from 'node:crypto';
 
 @Injectable()
 export class HeroesCreateUsecase {
-    constructor(
-        @Inject('HEROES_REPOSITORY')
-        private readonly heroesRepository: HeroesRepository
-    ) { }
-    async execute(hero: HeroesPropsDto) {
-        const heroId = randomUUID();
-        const heroProps = { ...hero, id: heroId };
-        const heroPersistence = HeroMapper.toPersistence(heroProps);
+  constructor(
+    @Inject('HEROES_REPOSITORY')
+    private readonly heroesRepository: HeroesRepository,
+  ) {}
+  async execute(hero: HeroesPropsDto) {
+    const heroId = randomUUID();
+    const heroProps = { ...hero, id: heroId };
+    const heroPersistence = HeroMapper.toPersistence(heroProps);
 
-
-        const heroResponse = await this.heroesRepository.createhero(heroPersistence);
-        return HeroMapper.toResponse(heroResponse);
-    }
+    const heroResponse =
+      await this.heroesRepository.createhero(heroPersistence);
+    return HeroMapper.toResponse(heroResponse);
+  }
 }

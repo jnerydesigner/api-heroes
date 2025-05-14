@@ -6,24 +6,22 @@ import { HeroMapper } from '@domain/mapper/hero.mapper';
 
 @Injectable()
 export class HeroesGenerateJsonUseCase {
-    constructor(
-        @Inject('HEROES_REPOSITORY')
-        private readonly heroesRepository: HeroesRepository
-    ) {
-
+  constructor(
+    @Inject('HEROES_REPOSITORY')
+    private readonly heroesRepository: HeroesRepository,
+  ) {}
+  async execute() {
+    await this.heroesRepository.delete();
+    const filePath = path.join('src', 'infra', 'data', 'heroes.json');
+    try {
+      const data = await fs.readFile(filePath, 'utf-8');
+      const heroes = JSON.parse(data);
+      for (const hero of heroes) {
+        const heroPersistence = HeroMapper.toPersistence(hero);
+        await this.heroesRepository.createhero(heroPersistence);
+      }
+    } catch (err) {
+      console.error('Erro ao escrever o arquivo:', err);
     }
-    async execute() {
-        await this.heroesRepository.delete();
-        const filePath = path.join('src', 'infra', 'data', 'heroes.json');
-        try {
-            const data = await fs.readFile(filePath, 'utf-8');
-            const heroes = JSON.parse(data);
-            for (const hero of heroes) {
-                const heroPersistence = HeroMapper.toPersistence(hero);
-                await this.heroesRepository.createhero(heroPersistence);
-            }
-        } catch (err) {
-            console.error('Erro ao escrever o arquivo:', err);
-        }
-    }
+  }
 }
