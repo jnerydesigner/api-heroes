@@ -1,6 +1,5 @@
-import { HeroesApi } from "@infra/data/heroes.data";
-import { PrismaService } from "../client/prisma.service";
-
+import { HeroesApi } from '@infra/data/heroes.data';
+import { PrismaService } from '../client/prisma.service';
 
 const prisma = new PrismaService();
 

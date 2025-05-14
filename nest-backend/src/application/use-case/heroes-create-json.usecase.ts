@@ -7,27 +7,26 @@ import * as path from 'path';
 
 @Injectable()
 export class HeroesCreateJsonUseCase {
-    private logger = new Logger(HeroesCreateJsonUseCase.name);
-    constructor(
-        @Inject('HEROES_REPOSITORY')
-        private readonly heroesRepository: HeroesRepository
-    ) { }
-    async execute() {
-        const heroes = await this.heroesRepository.findAllJson();
-        const filePath = path.join('src', 'infra', 'data', 'heroes.json');
-        await this.createJsonFile(filePath, heroes);
-    }
+  private logger = new Logger(HeroesCreateJsonUseCase.name);
+  constructor(
+    @Inject('HEROES_REPOSITORY')
+    private readonly heroesRepository: HeroesRepository,
+  ) {}
+  async execute() {
+    const heroes = await this.heroesRepository.findAllJson();
+    const filePath = path.join('src', 'infra', 'data', 'heroes.json');
+    await this.createJsonFile(filePath, heroes);
+  }
 
-    async createJsonFile(filePath: string, data: HeroesPropsDto[]) {
-        const writeStream = createWriteStream(filePath);
-        writeStream.write(JSON.stringify(data, null, 2));
-        writeStream.end();
-        writeStream.on('finish', () => {
-            this.logger.log(`File JSON created in: ${filePath}`);
-        });
-        writeStream.on('error', (err) => {
-            console.error('Erro ao escrever o arquivo:', err);
-        });
-
-    }
+  async createJsonFile(filePath: string, data: HeroesPropsDto[]) {
+    const writeStream = createWriteStream(filePath);
+    writeStream.write(JSON.stringify(data, null, 2));
+    writeStream.end();
+    writeStream.on('finish', () => {
+      this.logger.log(`File JSON created in: ${filePath}`);
+    });
+    writeStream.on('error', (err) => {
+      console.error('Erro ao escrever o arquivo:', err);
+    });
+  }
 }

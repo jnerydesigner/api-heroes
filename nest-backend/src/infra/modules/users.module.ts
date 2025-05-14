@@ -7,18 +7,22 @@ import { APP_GUARD } from '@nestjs/core';
 import { UsersController } from '@presenters/users.controller';
 
 @Module({
-    imports: [],
-    controllers: [UsersController],
-    providers: [UsersService, {
-        provide: 'USERS_REPOSITORY',
-        useFactory: (prisma: PrismaService) => {
-            return new UsersPrismaRepository(prisma);
-        },
-        inject: [PrismaService]
-    }, {
-            provide: APP_GUARD,
-            useClass: AuthGuard,
-        },],
-    exports: [UsersService, 'USERS_REPOSITORY']
+  imports: [],
+  controllers: [UsersController],
+  providers: [
+    UsersService,
+    {
+      provide: 'USERS_REPOSITORY',
+      useFactory: (prisma: PrismaService) => {
+        return new UsersPrismaRepository(prisma);
+      },
+      inject: [PrismaService],
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
+  exports: [UsersService, 'USERS_REPOSITORY'],
 })
-export class UsersModule { }
+export class UsersModule {}

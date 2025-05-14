@@ -18,9 +18,9 @@ import { UsersModule } from './users.module';
     HeroesModule,
     DatabaseModule,
     AuthModule,
-    UsersModule
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

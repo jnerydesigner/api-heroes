@@ -3,11 +3,11 @@ import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class HeroesDeleteAllUseCase {
-    constructor(
-        @Inject('HEROES_REPOSITORY')
-        private readonly heroesRepository: HeroesRepository
-    ) { }
-    async execute() {
-        return this.heroesRepository.deleteAll();
-    }
+  constructor(
+    @Inject('HEROES_REPOSITORY')
+    private readonly heroesRepository: HeroesRepository,
+  ) {}
+  async execute() {
+    return this.heroesRepository.deleteAll();
+  }
 }

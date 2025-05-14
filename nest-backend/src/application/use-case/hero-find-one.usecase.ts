@@ -4,16 +4,16 @@ import { Inject, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class HeroFindOneUsecase {
-    constructor(
-        @Inject('HEROES_REPOSITORY')
-        private readonly heroesRepository: HeroesRepository
-    ) { }
-    async execute(heroId: string) {
-        const heroResponsepersistence = await this.heroesRepository.findHeroById(heroId);
+  constructor(
+    @Inject('HEROES_REPOSITORY')
+    private readonly heroesRepository: HeroesRepository,
+  ) {}
+  async execute(heroId: string) {
+    const heroResponsepersistence =
+      await this.heroesRepository.findHeroById(heroId);
 
-        const heroMapper = HeroMapper.toResponse(heroResponsepersistence);
+    const heroMapper = HeroMapper.toResponse(heroResponsepersistence);
 
-        return heroMapper
-    }
-
+    return heroMapper;
+  }
 }

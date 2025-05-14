@@ -11,15 +11,24 @@ import { Module } from '@nestjs/common';
 import { HeroesController } from '@presenters/heroes.controller';
 
 @Module({
-    imports: [],
-    controllers: [HeroesController],
-    providers: [HeroesFindAllUseCase, HeroesCreateUsecase, HeroFindOneUsecase, HeroesCreateJsonUseCase, HeroesGenerateJsonUseCase, HeroesDeleteAllUseCase, HeroesUpdateUseCase, {
-        provide: 'HEROES_REPOSITORY',
-        useFactory: (prisma: PrismaService) => {
-            return new HeroesPrismaRepository(prisma);
-        },
-        inject: [PrismaService],
-    }],
-    exports: [],
+  imports: [],
+  controllers: [HeroesController],
+  providers: [
+    HeroesFindAllUseCase,
+    HeroesCreateUsecase,
+    HeroFindOneUsecase,
+    HeroesCreateJsonUseCase,
+    HeroesGenerateJsonUseCase,
+    HeroesDeleteAllUseCase,
+    HeroesUpdateUseCase,
+    {
+      provide: 'HEROES_REPOSITORY',
+      useFactory: (prisma: PrismaService) => {
+        return new HeroesPrismaRepository(prisma);
+      },
+      inject: [PrismaService],
+    },
+  ],
+  exports: [],
 })
-export class HeroesModule { }
+export class HeroesModule {}

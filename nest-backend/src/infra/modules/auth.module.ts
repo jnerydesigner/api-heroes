@@ -8,27 +8,32 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from '@presenters/auth.controller';
-import ms from 'ms'
+import ms from 'ms';
 
 @Module({
-    controllers: [AuthController],
-    providers: [AuthService, UsersService, {
-        provide: 'USERS_REPOSITORY',
-        useFactory: (prisma: PrismaService) => {
-            return new UsersPrismaRepository(prisma);
-        },
-        inject: [PrismaService]
-    }, {
-            provide: APP_GUARD,
-            useClass: AuthGuard,
-        }],
-    imports: [
-        JwtModule.register({
-            global: true,
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: '5m' },
-        }),
-    ],
-    exports: [AuthService]
+  controllers: [AuthController],
+  providers: [
+    AuthService,
+    UsersService,
+    {
+      provide: 'USERS_REPOSITORY',
+      useFactory: (prisma: PrismaService) => {
+        return new UsersPrismaRepository(prisma);
+      },
+      inject: [PrismaService],
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
+  imports: [
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '5m' },
+    }),
+  ],
+  exports: [AuthService],
 })
-export class AuthModule { }
+export class AuthModule {}
