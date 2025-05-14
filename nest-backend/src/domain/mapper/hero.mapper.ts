@@ -9,6 +9,7 @@ export class HeroMapper {
       about: hero.about,
       image: hero.image,
       hero_or_vilain: hero.heroOrVilain,
+      imagePath: hero.imagePath,
     };
   }
 
@@ -19,6 +20,7 @@ export class HeroMapper {
       about: hero.about,
       image: hero.image,
       heroOrVilain: hero.hero_or_vilain,
+      imagePath: hero.imagePath,
     };
   }
 }

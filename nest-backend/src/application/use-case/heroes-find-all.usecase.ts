@@ -33,6 +33,7 @@ export interface HeroesPropsOutput {
   image: string;
   heroOrVilain: string;
   about: string;
+  imagePath: string;
 }
 
 export interface HeroesOutput {

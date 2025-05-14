@@ -18,6 +18,7 @@ export class HeroesPrismaRepository implements HeroesRepository {
       about: hero.about,
       image: hero.image,
       heroOrVilain: hero.hero_or_vilain,
+      imagePath: hero.imagePath,
     }));
   }
   async findHeroById(id: string): Promise<Heroes> {
@@ -75,6 +76,7 @@ export class HeroesPrismaRepository implements HeroesRepository {
           about: '',
           image: '',
           heroOrVilain: '',
+          imagePath: '',
         },
       ];
     }
@@ -85,6 +87,7 @@ export class HeroesPrismaRepository implements HeroesRepository {
       about: hero.about,
       image: hero.image,
       heroOrVilain: hero.hero_or_vilain,
+      imagePath: hero.imagePath,
     }));
   }
   async findHeroByIdBoolean(id: string): Promise<boolean> {

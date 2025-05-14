@@ -1,3 +1,4 @@
+import { AppendImageHeroUseCase } from '@application/use-case/append-image-hero.usecase';
 import { HeroFindOneUsecase } from '@application/use-case/hero-find-one.usecase';
 import { HeroesCreateJsonUseCase } from '@application/use-case/heroes-create-json.usecase';
 import { HeroesCreateUsecase } from '@application/use-case/heroes-create.usecase';
@@ -21,6 +22,7 @@ import { HeroesController } from '@presenters/heroes.controller';
     HeroesGenerateJsonUseCase,
     HeroesDeleteAllUseCase,
     HeroesUpdateUseCase,
+    AppendImageHeroUseCase,
     {
       provide: 'HEROES_REPOSITORY',
       useFactory: (prisma: PrismaService) => {

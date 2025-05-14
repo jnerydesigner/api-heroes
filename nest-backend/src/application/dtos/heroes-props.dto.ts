@@ -4,4 +4,5 @@ export interface HeroesPropsDto {
   image: string;
   heroOrVilain: string;
   about: string;
+  imagePath: string;
 }

@@ -8,10 +8,11 @@ datasource db {
 }
 
 model Heroes {
-  id             String @id @default(uuid())
+  id             String  @id @default(uuid())
   name           String
   image          String
-  hero_or_vilain String @map("hero_or_vilain")
+  imagePath      String? @map("image_path")
+  hero_or_vilain String  @map("hero_or_vilain")
   about          String
 
   @@map("heroes")
