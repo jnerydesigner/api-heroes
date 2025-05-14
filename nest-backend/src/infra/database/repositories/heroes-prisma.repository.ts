@@ -33,7 +33,7 @@ export class HeroesPrismaRepository implements HeroesRepository {
 
     return hero;
   }
-  async createhero(hero: Heroes): Promise<Heroes> {
+  async createHero(hero: Heroes): Promise<Heroes> {
     const heroExists = await this.findHeroByIdBoolean(hero.id);
     if (heroExists) {
       return this.prismaService.heroes.findFirst({
@@ -56,13 +56,28 @@ export class HeroesPrismaRepository implements HeroesRepository {
     currentPage: number,
     sizePage: number,
   ): Promise<HeroesPropsOutput[]> {
+    const skip = Math.max((Number(currentPage) - 1) * Number(sizePage), 0);
+    console.log(skip);
+
     const heroes = await this.prismaService.heroes.findMany({
-      skip: (Number(currentPage) - 1) * Number(sizePage),
+      skip: skip,
       take: Number(sizePage),
       orderBy: {
         name: 'asc',
       },
     });
+
+    if (heroes.length === 0) {
+      return [
+        {
+          id: null,
+          name: '',
+          about: '',
+          image: '',
+          heroOrVilain: '',
+        },
+      ];
+    }
 
     return heroes.map((hero) => ({
       id: hero.id,

@@ -16,7 +16,7 @@ export class HeroesCreateUsecase {
     const heroPersistence = HeroMapper.toPersistence(heroProps);
 
     const heroResponse =
-      await this.heroesRepository.createhero(heroPersistence);
+      await this.heroesRepository.createHero(heroPersistence);
     return HeroMapper.toResponse(heroResponse);
   }
 }
