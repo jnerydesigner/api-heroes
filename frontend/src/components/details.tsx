@@ -9,6 +9,14 @@ export const Details: React.FC = () => {
     queryFn: () => fetchHeroById(params.id!),
     enabled: !!params.id,
   });
+
+  if (isLoading) {
+    return (
+      <div className="h-full w-full bg-gray-600">
+        <h3 className="text-3xl text-white">Carregando</h3>
+      </div>
+    );
+  }
   return (
     <div className="w-[100%] bg-slate-200 circle grid grid-cols-2">
       <div className="w-full h-full flex justify-center items-center p-2">
